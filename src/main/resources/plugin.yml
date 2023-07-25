@@ -1,0 +1,24 @@
+name: LockableContainers
+version: '${project.version}'
+main: com.iwuzreaper.lockablecontainers.LockableContainers
+api-version: '1.20'
+authors: [ iWuzReaper ]
+description: Allows for the locking of containers
+commands:
+  ToggleLock:
+    description: Lock or unlock a container you own.
+    usage: /<command>
+    aliases: [lock, tl, lctl, lclock, lctogglelock]
+  ForceOwner:
+    description: Set a container's owner to be a certain player.
+    usage: /<command> <args>
+    aliases: [ transferowner, fo, lcfo, lcforceowner, lctransferowner ]
+  ClaimContainer:
+    description: Claim an unowned container.
+    usage: /<command>
+    aliases: [ claim, cc, lccc, lcclaimcontainer, lcclaim ]
+  UnClaimContainer:
+    description: Unclaim a container that you own.
+    usage: /<command>
+    aliases: [ unclaim, ucc, lcucc, lcunclaimcontainer, lcunclaim ]
+
