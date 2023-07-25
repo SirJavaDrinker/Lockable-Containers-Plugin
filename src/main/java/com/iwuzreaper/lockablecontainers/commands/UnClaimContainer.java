@@ -28,18 +28,18 @@ public class UnClaimContainer implements CommandExecutor {
         }
 
         if (p.getTargetBlock(5)==null) {
-            sender.sendMessage(StandardizedMessages.errorPluginTag+"No valid target present.");
+            sender.sendMessage(StandardizedMessages.noValidTarget);
             return true;
         }
 
         if (!(p.getTargetBlock(5).getState() instanceof TileState)) {
-            sender.sendMessage(StandardizedMessages.errorPluginTag+"No valid target present.");
+            sender.sendMessage(StandardizedMessages.noValidTarget);
             return true;
         }
 
         TileState tileState = (TileState) p.getTargetBlock(5).getState();
         if (ContainerUtil.isNullOwner(tileState)){
-            p.sendMessage(StandardizedMessages.errorPluginTag+"This container is already unclaimed.");
+            p.sendMessage(StandardizedMessages.containerAlreadyUnclaimed);
             return true;
         }
 

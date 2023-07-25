@@ -8,6 +8,7 @@ import com.iwuzreaper.lockablecontainers.events.BreakBlock;
 import com.iwuzreaper.lockablecontainers.events.InventoryMoveItem;
 import com.iwuzreaper.lockablecontainers.events.OpenInventory;
 import com.iwuzreaper.lockablecontainers.events.PlaceBlock;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +16,7 @@ public final class LockableContainers extends JavaPlugin {
 
     private static LockableContainers instance;
     public static LockableContainers getInstance() {return instance;}
+    public static FileConfiguration config() {return getInstance().getConfig();}
 
     @Override
     public void onEnable() {

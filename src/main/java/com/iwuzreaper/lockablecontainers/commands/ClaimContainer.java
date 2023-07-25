@@ -28,23 +28,23 @@ public class ClaimContainer implements CommandExecutor {
         }
 
         if (p.getTargetBlock(5)==null) {
-            sender.sendMessage(StandardizedMessages.errorPluginTag+"No valid target present.");
+            sender.sendMessage(StandardizedMessages.noValidTarget);
             return true;
         }
 
         if (!(p.getTargetBlock(5).getState() instanceof TileState)) {
-            sender.sendMessage(StandardizedMessages.errorPluginTag+"No valid target present.");
+            sender.sendMessage(StandardizedMessages.noValidTarget);
             return true;
         }
 
         TileState tileState = (TileState) p.getTargetBlock(5).getState();
         if (!ContainerUtil.isNullOwner(tileState)){
-            p.sendMessage(StandardizedMessages.errorPluginTag+"This container is already claimed.");
+            p.sendMessage(StandardizedMessages.containerAlreadyClaimed);
             return true;
         }
 
         ContainerUtil.setOwner(p, tileState);
-        p.sendMessage(StandardizedMessages.pluginTag+"Container successfully claimed.");
+        p.sendMessage(StandardizedMessages.commandSuccess);
 
         return true;
     }

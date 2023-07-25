@@ -1,5 +1,6 @@
 package com.iwuzreaper.lockablecontainers.events;
 
+import com.iwuzreaper.lockablecontainers.LockableContainers;
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
 import com.iwuzreaper.lockablecontainers.util.PDataHelper;
 import org.bukkit.block.Container;
@@ -16,6 +17,7 @@ public class InventoryMoveItem implements Listener {
 
     @EventHandler
     public void onInventoryMoveItem(InventoryMoveItemEvent e) {
+        if (!LockableContainers.config().getBoolean("preventHoppers")) {return;}
         if (e.getSource().getHolder()==null) {return;}
         if (e.getDestination().getHolder()==null) {return;}
 

@@ -57,12 +57,12 @@ public class ForceOwner implements CommandExecutor {
         }
 
         if (p.getTargetBlock(5) == null) {
-            sender.sendMessage(StandardizedMessages.errorPluginTag + "No valid target present.");
+            sender.sendMessage(StandardizedMessages.noValidTarget);
             return true;
         }
 
         if (!(p.getTargetBlock(5).getState() instanceof TileState)) {
-            sender.sendMessage(StandardizedMessages.errorPluginTag + "No valid target present.");
+            sender.sendMessage(StandardizedMessages.noValidTarget);
             return true;
         }
 

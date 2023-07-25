@@ -1,5 +1,6 @@
 package com.iwuzreaper.lockablecontainers.events;
 
+import com.iwuzreaper.lockablecontainers.LockableContainers;
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Container;
@@ -12,6 +13,7 @@ public class PlaceBlock implements Listener {
 
     @EventHandler
     public void PlaceBlock(BlockPlaceEvent e) {
+        if (!LockableContainers.config().getBoolean("claimOnPlace")) {return;}
         if (!(e.getBlock().getState() instanceof Container)) {return;}
         Container container = (Container) e.getBlock().getState();
 

@@ -1,5 +1,6 @@
 package com.iwuzreaper.lockablecontainers.events;
 
+import com.iwuzreaper.lockablecontainers.LockableContainers;
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
 import com.iwuzreaper.lockablecontainers.util.StandardizedMessages;
 import org.bukkit.block.Container;
@@ -15,6 +16,7 @@ public class OpenInventory implements Listener {
 
     @EventHandler
     public void onInventoryOpen(InventoryOpenEvent e) {
+        if (!LockableContainers.config().getBoolean("isEnabled")) {return;}
         if (e.getInventory().getHolder()==null) {return;}
 
         if (e.getInventory().getHolder() instanceof DoubleChest) {
@@ -28,7 +30,7 @@ public class OpenInventory implements Listener {
             return;
         }
 
-        if (!(e.getInventory().getHolder() instanceof Container)) {
+        if ((e.getInventory().getHolder() instanceof Container)) {
             Container container = (Container) ((Container) e.getInventory().getHolder()).getBlock().getState();
             boolean chest = preventOpen(container, e.getPlayer());
             if (chest) {

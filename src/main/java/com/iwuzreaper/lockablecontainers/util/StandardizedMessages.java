@@ -15,13 +15,17 @@ public class StandardizedMessages {
 
     public static String invalidName = errorPluginTag+"Please input a valid name."+ChatColor.RESET;
 
-    public static String notOwnerContainer = errorPluginTag+"You don't appear to be the owner of this container."+ChatColor.RESET;
+    public static String notOwnerContainer = errorPluginTag+"This does not belong to you."+ChatColor.RESET;
 
     public static String containerLocked = errorPluginTag+"This container appears to be locked."+ChatColor.RESET;
 
+    public static String containerAlreadyClaimed = errorPluginTag+"This container is already claimed."+ChatColor.RESET;
 
+    public static String containerAlreadyUnclaimed = errorPluginTag+"This container is already unclaimed."+ChatColor.RESET;
 
+    public static String noValidTarget = errorPluginTag+"No valid target present..."+ChatColor.RESET;
 
+    public static String commandSuccess = errorPluginTag+"Command successfully executed."+ChatColor.RESET;
 
 }
 
