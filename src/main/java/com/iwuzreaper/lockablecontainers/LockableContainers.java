@@ -8,6 +8,7 @@ import com.iwuzreaper.lockablecontainers.events.BreakBlock;
 import com.iwuzreaper.lockablecontainers.events.InventoryMoveItem;
 import com.iwuzreaper.lockablecontainers.events.OpenInventory;
 import com.iwuzreaper.lockablecontainers.events.PlaceBlock;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +23,9 @@ public final class LockableContainers extends JavaPlugin {
     public void onEnable() {
         instance = this;
         // Plugin startup logic
+        Bukkit.getLogger().info("Starting LockableContainers.");
+        config().options().copyDefaults(true);
+        saveDefaultConfig();
 
         this.getCommand("ToggleLock").setExecutor(new ToggleLock());
         this.getCommand("ForceOwner").setExecutor(new ForceOwner());
