@@ -21,4 +21,8 @@ commands:
     description: Unclaim a container that you own.
     usage: /<command>
     aliases: [ unclaim, ucc, lcucc, lcunclaimcontainer, lcunclaim ]
+  LCSettings:
+    description: Change the settings of the plugin.
+    usage: /<command> <args>
+    aliases: [ lcsettings, lcs, lcset, lockablecontainersettings ]
 

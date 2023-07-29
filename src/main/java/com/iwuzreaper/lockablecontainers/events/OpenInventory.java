@@ -2,14 +2,13 @@ package com.iwuzreaper.lockablecontainers.events;
 
 import com.iwuzreaper.lockablecontainers.LockableContainers;
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
-import com.iwuzreaper.lockablecontainers.util.StandardizedMessages;
+import com.iwuzreaper.lockablecontainers.util.Uni;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 
 public class OpenInventory implements Listener {
@@ -24,7 +23,7 @@ public class OpenInventory implements Listener {
             boolean chestLeft = preventOpen((Container) doubleChest.getLeftSide(), e.getPlayer());
             boolean chestRight = preventOpen((Container) doubleChest.getRightSide(), e.getPlayer());
             if (chestLeft || chestRight) {
-                e.getPlayer().sendMessage(StandardizedMessages.containerLocked);
+                Uni.actionResponse((Player) e.getPlayer(), Uni.containerLocked);
                 e.setCancelled(true);
             }
             return;
@@ -34,7 +33,9 @@ public class OpenInventory implements Listener {
             Container container = (Container) ((Container) e.getInventory().getHolder()).getBlock().getState();
             boolean chest = preventOpen(container, e.getPlayer());
             if (chest) {
-                e.getPlayer().sendMessage(StandardizedMessages.containerLocked);
+                Uni.actionResponse((Player) e.getPlayer(), Uni.containerLocked);
+
+
                 e.setCancelled(true);
             }
             return;
@@ -53,7 +54,7 @@ public class OpenInventory implements Listener {
             preventOpen = false;
         }
 
-        if (ContainerUtil.isNullOwner(container)) {
+        if (ContainerUtil.isOwnerNull(container)) {
             preventOpen = false;
         }
 

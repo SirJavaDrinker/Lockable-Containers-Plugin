@@ -1,9 +1,6 @@
 package com.iwuzreaper.lockablecontainers;
 
-import com.iwuzreaper.lockablecontainers.commands.ClaimContainer;
-import com.iwuzreaper.lockablecontainers.commands.ForceOwner;
-import com.iwuzreaper.lockablecontainers.commands.ToggleLock;
-import com.iwuzreaper.lockablecontainers.commands.UnClaimContainer;
+import com.iwuzreaper.lockablecontainers.commands.*;
 import com.iwuzreaper.lockablecontainers.events.BreakBlock;
 import com.iwuzreaper.lockablecontainers.events.InventoryMoveItem;
 import com.iwuzreaper.lockablecontainers.events.OpenInventory;
@@ -31,6 +28,8 @@ public final class LockableContainers extends JavaPlugin {
         this.getCommand("ForceOwner").setExecutor(new ForceOwner());
         this.getCommand("UnClaimContainer").setExecutor(new UnClaimContainer());
         this.getCommand("ClaimContainer").setExecutor(new ClaimContainer());
+        this.getCommand("LCSettings").setExecutor(new Settings());
+
 
 
 

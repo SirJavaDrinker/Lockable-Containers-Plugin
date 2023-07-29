@@ -1,7 +1,7 @@
 package com.iwuzreaper.lockablecontainers.commands;
 
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
-import com.iwuzreaper.lockablecontainers.util.StandardizedMessages;
+import com.iwuzreaper.lockablecontainers.util.Uni;
 import org.bukkit.block.TileState;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,33 +23,33 @@ public class UnClaimContainer implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!p.isOp() && !p.hasPermission("LockableContainers.UnClaimContainer") && !p.hasPermission("LockableContainers.*")) {
-            sender.sendMessage(StandardizedMessages.noAccess);
+            sender.sendMessage(Uni.noAccess);
             return true;
         }
 
         if (p.getTargetBlock(5)==null) {
-            sender.sendMessage(StandardizedMessages.noValidTarget);
+            sender.sendMessage(Uni.noValidTarget);
             return true;
         }
 
         if (!(p.getTargetBlock(5).getState() instanceof TileState)) {
-            sender.sendMessage(StandardizedMessages.noValidTarget);
+            sender.sendMessage(Uni.noValidTarget);
             return true;
         }
 
         TileState tileState = (TileState) p.getTargetBlock(5).getState();
-        if (ContainerUtil.isNullOwner(tileState)){
-            p.sendMessage(StandardizedMessages.containerAlreadyUnclaimed);
+        if (ContainerUtil.isOwnerNull(tileState)){
+            p.sendMessage(Uni.containerAlreadyUnclaimed);
             return true;
         }
 
-        if (!ContainerUtil.isOwner(p, tileState)){
-            p.sendMessage(StandardizedMessages.notOwnerContainer);
+        if (!ContainerUtil.checkOwner(p, tileState)){
+            p.sendMessage(Uni.notOwnerContainer);
             return true;
         }
 
-        ContainerUtil.setNull(tileState);
-        p.sendMessage(StandardizedMessages.pluginTag+"Container successfully unclaimed.");
+        ContainerUtil.setOwnerNull(tileState);
+        p.sendMessage(Uni.tag +"Container successfully unclaimed.");
 
         return true;
     }

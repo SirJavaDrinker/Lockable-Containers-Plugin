@@ -2,16 +2,12 @@ package com.iwuzreaper.lockablecontainers.events;
 
 import com.iwuzreaper.lockablecontainers.LockableContainers;
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
-import com.iwuzreaper.lockablecontainers.util.PDataHelper;
 import org.bukkit.block.Container;
 import org.bukkit.block.DoubleChest;
-import org.bukkit.block.TileState;
-import org.bukkit.block.data.type.Hopper;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.InventoryMoveItemEvent; //This sucks
+
 
 public class InventoryMoveItem implements Listener {
 
@@ -72,7 +68,7 @@ public class InventoryMoveItem implements Listener {
         }
 
 
-        if (ContainerUtil.isNullOwner(source)) {
+        if (ContainerUtil.isOwnerNull(source)) {
             cancelTransfer = false;
         }
         return cancelTransfer;

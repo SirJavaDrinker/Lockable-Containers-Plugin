@@ -2,7 +2,7 @@ package com.iwuzreaper.lockablecontainers.events;
 
 import com.iwuzreaper.lockablecontainers.LockableContainers;
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
-import com.iwuzreaper.lockablecontainers.util.StandardizedMessages;
+import com.iwuzreaper.lockablecontainers.util.Uni;
 import org.bukkit.block.Container;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,12 +18,12 @@ public class BreakBlock implements Listener {
         Player p = e.getPlayer();
 
 
-        if (ContainerUtil.isNullOwner(container)) {
+        if (ContainerUtil.isOwnerNull(container)) {
             return;
         }
 
         if (!ContainerUtil.getOwner(container).equals(p.getUniqueId().toString()) && ContainerUtil.getLockState(container))  {
-            p.sendMessage(StandardizedMessages.notOwnerContainer);
+            Uni.actionResponse(e.getPlayer(), Uni.notOwnerContainer);
             e.setCancelled(true);
             return;
         }

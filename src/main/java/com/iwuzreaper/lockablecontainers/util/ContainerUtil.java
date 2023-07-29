@@ -8,25 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
 public class ContainerUtil {
-    public static boolean isOwner(Player player, TileState tileState) {
-        String containerOwner = (String) readFromContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
-        if (containerOwner.equalsIgnoreCase("null")) {
-            return false;
-        } else if (!containerOwner.equalsIgnoreCase(player.getUniqueId().toString())) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    public static boolean isNullOwner(TileState tileState) {
-        String containerOwner = (String) readFromContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
-        if (containerOwner.equalsIgnoreCase("null")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public static void writeToContainer(TileState tileState, String key, Object value, PersistentDataType type) {
         if (tileState instanceof Chest) {
@@ -41,7 +23,6 @@ public class ContainerUtil {
             PDataHelper.Write(tileState, key, value, type);
         }
     }
-
     public static Object readFromContainer(TileState tileState, String key, Object fallback, PersistentDataType type) {
         if (tileState instanceof Chest) {
             if (((Chest) tileState).getInventory().getHolder() instanceof DoubleChest) {
@@ -57,35 +38,51 @@ public class ContainerUtil {
     }
 
     public static void setOwner(Player player, TileState tileState) {
-
         writeToContainer(tileState, "container-owner", player.getUniqueId().toString(), PersistentDataType.STRING);
-
     }
-
-    public static void setNull(TileState tileState) {
-        writeToContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
-    }
-
     public static String getOwner(TileState tileState) {
         return (String) readFromContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
     }
-
-    public static boolean getLockState(TileState tileState) {
-        return (Boolean) readFromContainer(tileState, "container-lock-state", false, PersistentDataType.BOOLEAN);
+    public static boolean checkOwner(Player player, TileState tileState) {
+        String containerOwner = (String) readFromContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
+        if (containerOwner.equalsIgnoreCase("null")) {
+            return false;
+        } else if (!containerOwner.equalsIgnoreCase(player.getUniqueId().toString())) {
+            return false;
+        } else {
+            return true;
+        }
     }
+
+    public static void setOwnerNull(TileState tileState) {
+        writeToContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
+    }
+    public static boolean isOwnerNull(TileState tileState) {
+        String containerOwner = (String) readFromContainer(tileState, "container-owner", "null", PersistentDataType.STRING);
+        if (containerOwner.equalsIgnoreCase("null")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public static void setLockState(TileState tileState, boolean bool) {
         writeToContainer(tileState, "container-lock-state", bool, PersistentDataType.BOOLEAN);
     }
-
     public static boolean toggleLockState(TileState tileState) {
         Boolean lockState = getLockState(tileState);
         if (lockState) {
-            writeToContainer(tileState, "container-lock-state", false, PersistentDataType.BOOLEAN);
+            setLockState(tileState, false);
             return false;
         } else {
-            writeToContainer(tileState, "container-lock-state", true, PersistentDataType.BOOLEAN);
+            setLockState(tileState, true);
             return true;
         }
     }
+    public static boolean getLockState(TileState tileState) {
+        return (Boolean) readFromContainer(tileState, "container-lock-state", false, PersistentDataType.BOOLEAN);
+    }
+
+
 }

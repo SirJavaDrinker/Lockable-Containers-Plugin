@@ -1,7 +1,7 @@
 package com.iwuzreaper.lockablecontainers.commands;
 
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
-import com.iwuzreaper.lockablecontainers.util.StandardizedMessages;
+import com.iwuzreaper.lockablecontainers.util.Uni;
 import org.bukkit.block.TileState;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,28 +23,28 @@ public class ClaimContainer implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!p.isOp() && !p.hasPermission("LockableContainers.ClaimContainer") && !p.hasPermission("LockableContainers.*")) {
-            sender.sendMessage(StandardizedMessages.noAccess);
+            Uni.commandResponse(p,Uni.noAccess);
             return true;
         }
 
         if (p.getTargetBlock(5)==null) {
-            sender.sendMessage(StandardizedMessages.noValidTarget);
+            Uni.commandResponse(p,Uni.noValidTarget);
             return true;
         }
 
         if (!(p.getTargetBlock(5).getState() instanceof TileState)) {
-            sender.sendMessage(StandardizedMessages.noValidTarget);
+            Uni.commandResponse(p,Uni.noValidTarget);
             return true;
         }
 
         TileState tileState = (TileState) p.getTargetBlock(5).getState();
-        if (!ContainerUtil.isNullOwner(tileState)){
-            p.sendMessage(StandardizedMessages.containerAlreadyClaimed);
+        if (!ContainerUtil.isOwnerNull(tileState)){
+            Uni.commandResponse(p,Uni.containerAlreadyClaimed);
             return true;
         }
 
         ContainerUtil.setOwner(p, tileState);
-        p.sendMessage(StandardizedMessages.commandSuccess);
+        Uni.commandResponse(p,Uni.commandSuccess);
 
         return true;
     }

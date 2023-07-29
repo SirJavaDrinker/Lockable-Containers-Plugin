@@ -2,7 +2,7 @@ package com.iwuzreaper.lockablecontainers.commands;
 
 import com.iwuzreaper.lockablecontainers.util.ContainerUtil;
 import com.iwuzreaper.lockablecontainers.util.PDataHelper;
-import com.iwuzreaper.lockablecontainers.util.StandardizedMessages;
+import com.iwuzreaper.lockablecontainers.util.Uni;
 import org.bukkit.Bukkit;
 import org.bukkit.block.TileState;
 import org.bukkit.command.Command;
@@ -27,7 +27,7 @@ public class ForceOwner implements CommandExecutor {
 
         Player p = (Player) sender;
         if (!p.isOp() && !p.hasPermission("LockableContainers.ForceOwner") && !p.hasPermission("LockableContainers.*")) {
-            sender.sendMessage(StandardizedMessages.noAccess);
+            Uni.commandResponse(p,Uni.noAccess);
             return true;
         }
 
@@ -39,7 +39,7 @@ public class ForceOwner implements CommandExecutor {
         }
 
         if (args.length != 1 && !force) {
-            sender.sendMessage(StandardizedMessages.incorrectArgs(1));
+            Uni.commandResponse(p,Uni.incorrectArgs(1));
             return true;
         }
 
@@ -53,27 +53,29 @@ public class ForceOwner implements CommandExecutor {
         }
 
         if (!validPlayerName && !force) {
-            sender.sendMessage(StandardizedMessages.invalidName);
+            Uni.commandResponse(p,Uni.invalidName);
         }
 
         if (p.getTargetBlock(5) == null) {
-            sender.sendMessage(StandardizedMessages.noValidTarget);
+            Uni.commandResponse(p,Uni.noValidTarget);
             return true;
         }
 
         if (!(p.getTargetBlock(5).getState() instanceof TileState)) {
-            sender.sendMessage(StandardizedMessages.noValidTarget);
+            Uni.commandResponse(p,Uni.noValidTarget);
             return true;
         }
 
         if (force) {
             TileState tileState = (TileState) p.getTargetBlock(5).getState();
             PDataHelper.Write(tileState, "container-owner", args[0], PersistentDataType.STRING);
+            Uni.commandResponse(p,Uni.commandSuccess);
             return true;
         }
 
         TileState tileState = (TileState) p.getTargetBlock(5).getState();
         ContainerUtil.setOwner(targetedPlayer, tileState);
+        Uni.commandResponse(p,Uni.commandSuccess);
 
 
         return true;
