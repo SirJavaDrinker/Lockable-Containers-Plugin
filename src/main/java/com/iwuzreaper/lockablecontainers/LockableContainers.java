@@ -12,6 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class LockableContainers extends JavaPlugin {
 
+    // This is a formal request to ignore the absolutely horrid version control that you see in github.
+
     private static LockableContainers instance;
     public static LockableContainers getInstance() {return instance;}
     public static FileConfiguration config() {return getInstance().getConfig();}
