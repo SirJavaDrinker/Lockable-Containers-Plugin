@@ -5,6 +5,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class Uni {
+    //There's 1000% a better way to set this up... but I'm lazy and this works.
+    
     public static void commandResponse(Player player, String message) { player.sendMessage(message);}
 
     public static void actionResponse(Player player, String message) {
