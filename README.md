@@ -21,7 +21,7 @@ Currently contains:
 
 Developed solo by [sirJavaDrinker (AKA: iWuzReaper)](https://iwuzreaper.com/)
 
-Using [Paper API](https://papermc.io/]
+Using [Paper API](https://papermc.io/)
 
 ### 🛑 | License
 
