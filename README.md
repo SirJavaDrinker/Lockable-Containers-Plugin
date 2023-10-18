@@ -2,8 +2,14 @@
 Built using Paper API, a Minecraft plugin that allows containers to be locked and for one specific owner to have access. 
 > Please Note: This is not being actively maintained.
 
-## 🚀 | Features
-Currently contains:
+## 🚀 | Features & Usage
+
+This plugin allows for the easy locking and claiming of containers.
+> Mainly for use on SMP's
+
+Built to be light-weight and easy to understand.
+
+Commands:
 - `/ToggleLock` - Allows for the locking of containers.
   - Permission: `LockableContainers.ToggleLock`
 - `/ForceOwner` - Allows for the container's owner to be set.
@@ -16,6 +22,7 @@ Currently contains:
   - Permission: `LockableContainers.Settings`
 
 > Permission for all commands can either be given via `LockableContainers.*`, or administrative permissions.
+> Built for 1.20x Paper API servers, functioning on other versions will be hit-or-miss at best.
 
 ## 📜 | Credits
 
