@@ -22,7 +22,7 @@ public class Settings implements CommandExecutor {
         }
 
         Player p = (Player) sender;
-        if (!p.isOp() && !p.hasPermission("LockableContainers.settings") && !p.hasPermission("LockableContainers.*")) {
+        if (!p.isOp() && !p.hasPermission("LockableContainers.Settings") && !p.hasPermission("LockableContainers.*")) {
             sender.sendMessage(Uni.noAccess);
             return true;
         }
