@@ -22,12 +22,16 @@ Commands:
   - Permission: `LockableContainers.Settings`
 
 > Permission for all commands can either be given via `LockableContainers.*`, or administrative permissions.
-> Built for 1.20x Paper API servers, functioning on other versions will be hit-or-miss at best.
+
+## 💥 | Requirements
+Your server must:
+- Be using PaperMC.
+- The version must be 1.20x.
+
+> Functioning on versions of Spigot or versions earlier or later than 1.20x will be hit or miss at best.
 
 ## 📜 | Credits
-
 Developed solo by [sirJavaDrinker (AKA: iWuzReaper)](https://iwuzreaper.com/)
-
 Using [Paper API](https://papermc.io/)
 
 ### 🛑 | License
