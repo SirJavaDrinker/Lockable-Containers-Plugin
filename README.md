@@ -1,6 +1,5 @@
 # Lockable-Containers-Plugin
 Built using Paper API, a Minecraft plugin that allows containers to be locked and for one specific owner to have access. 
-> Please Note: This is not being actively maintained.
 
 ## 🚀 | Features & Usage
 
